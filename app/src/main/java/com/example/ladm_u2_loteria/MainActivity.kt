@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.rep.setOnClickListener{
 
-            act.setTitle("Loteria ¡Se va y se corre...!")
+            act.setTitle("¡Se corre con la vieja del pozole...!")
             binding.loteria.setText("¡Loteria!")
             corriendo=true
             con=1
@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
                     (0..audios.size).forEach() {// 54 cartas
                         if (detener) { //pause
                             delay(6000L)
+
                             // mpCancion?.pause()
                         } else {
                             try {
@@ -88,15 +89,23 @@ class MainActivity : AppCompatActivity() {
                             }
                             try {
                                 runOnUiThread {
+
                                     act.binding.carta.setImageResource(imgCartas[baraja[it]])
                                     mpCancion?.start()
+
                                     binding.mensaje.setText("SE JUEGA ${con++} CARTAS")
+
                                 }
-                                delay(2000L)
+                                //mpCancion?.release()
+
+
+                                delay(3000L)
+
 
                             } catch (e: Exception) {
-                                mpCancion?.stop()
+
                             }
+                            mpCancion?.release()
                         }
                     }
 
